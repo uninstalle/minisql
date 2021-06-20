@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{f6aadb9b-8fcb-4b84-930d-2d44e09db4fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\parser">
+      <UniqueIdentifier>{4999f1e7-110b-4926-aa5e-0526e8ab9c7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\fs">
+      <UniqueIdentifier>{e7c0bd81-bcce-47f0-90ec-16f5ecf70077}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\catalog">
+      <UniqueIdentifier>{6756e8eb-d75a-4948-8cd2-609f7148536e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="parser\parser.y">
+      <Filter>src\parser</Filter>
+    </None>
+    <None Include="parser\lexer.l">
+      <Filter>src\parser</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="parser\instruction.cc">
+      <Filter>src\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="parser\lexer.cc">
+      <Filter>src\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="parser\parser.cc">
+      <Filter>src\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="parser\instruction.hh">
+      <Filter>src\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\parser.hh">
+      <Filter>src\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs.hh">
+      <Filter>src\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.hh">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="catalog\catalog.hh">
+      <Filter>src\catalog</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
