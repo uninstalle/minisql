@@ -87,6 +87,7 @@
     <IncludePath>C:\Users\52646\AppData\Local\Microsoft\Linux\HeaderCache\1.0\wsl_wsl\usr\include\c++\9;C:\Users\52646\AppData\Local\Microsoft\Linux\HeaderCache\1.0\wsl_wsl\usr\include\x86_64-linux-gnu\c++\9;C:\Users\52646\AppData\Local\Microsoft\Linux\HeaderCache\1.0\wsl_wsl\usr\include\c++\9\backward;C:\Users\52646\AppData\Local\Microsoft\Linux\HeaderCache\1.0\wsl_wsl\usr\lib\gcc\x86_64-linux-gnu\9\include;C:\Users\52646\AppData\Local\Microsoft\Linux\HeaderCache\1.0\wsl_wsl\usr\local\include;C:\Users\52646\AppData\Local\Microsoft\Linux\HeaderCache\1.0\wsl_wsl\usr\include\x86_64-linux-gnu;C:\Users\52646\AppData\Local\Microsoft\Linux\HeaderCache\1.0\wsl_wsl\usr\include\;C:\Users\52646\AppData\Local\Microsoft\Linux\HeaderCache\1.0\wsl_wsl\home\flechette\llvm\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="catalog\catalog.cc" />
     <ClCompile Include="controller.cc" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="parser\instruction.cc" />
@@ -96,6 +97,7 @@
   <ItemGroup>
     <ClInclude Include="catalog\catalog.hh" />
     <ClInclude Include="controller.hh" />
+    <ClInclude Include="fs\buffer.hh" />
     <ClInclude Include="fs\fs.hh" />
     <ClInclude Include="parser\instruction.hh" />
     <ClInclude Include="parser\parser.hh" />

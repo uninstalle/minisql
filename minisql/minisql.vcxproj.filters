@@ -38,6 +38,9 @@
     <ClCompile Include="controller.cc">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="catalog\catalog.cc">
+      <Filter>src\catalog</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parser\instruction.hh">
@@ -54,6 +57,9 @@
     </ClInclude>
     <ClInclude Include="catalog\catalog.hh">
       <Filter>src\catalog</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\buffer.hh">
+      <Filter>src\fs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
