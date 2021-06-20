@@ -197,7 +197,7 @@ char {
     colno++;
 }
 
-\n {
+\n\r? {
     lineno++;
     colno = 1;
 }

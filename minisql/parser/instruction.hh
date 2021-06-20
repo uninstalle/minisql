@@ -5,6 +5,8 @@
 
 namespace Minisql
 {
+    extern bool isJIT;
+
     namespace Instruction
     {
 

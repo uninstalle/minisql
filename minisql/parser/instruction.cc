@@ -1,3 +1,8 @@
 #include "instruction.hh"
 
-std::deque<Minisql::Instruction::Instruction*> Minisql::InstructionQueue::instructions;
+namespace Minisql
+{
+    std::deque<Instruction::Instruction*> InstructionQueue::instructions;
+
+    bool isJIT = true;
+}

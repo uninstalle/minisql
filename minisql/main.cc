@@ -4,8 +4,8 @@
 int main(int args, char** argv)
 {
     while (!Minisql::isQuitting) {
-        auto inst = Minisql::InstructionHandler::createInstructionHandler();
-        inst.execute();
+        auto instHandler = Minisql::InstructionHandler::createInstructionHandler();
+        instHandler.execute();
     }
     return 0;
 }

@@ -8,6 +8,18 @@ namespace Minisql
     class InstructionHandler
     {
         Instruction::Instruction* inst;
+
+        static void executeCreateTable(Instruction::CreateTable* inst);
+        static void executeDropTable(Instruction::DropTable* inst);
+        static void executeCreateIndex(Instruction::CreateIndex* inst);
+        static void executeDropIndex(Instruction::DropIndex* inst);
+        static void executeSelect(Instruction::Select* inst);
+        static void executeInsert(Instruction::Insert* inst);
+        static void executeDelete(Instruction::Delete* inst);
+        static void executeQuit(Instruction::Quit* inst);
+        static void executeExecfile(Instruction::Execfile* inst);
+
+
     public:
         InstructionHandler(Instruction::Instruction* inst) :inst(inst) {}
         InstructionHandler(const InstructionHandler& handler) = delete;

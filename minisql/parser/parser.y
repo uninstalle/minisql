@@ -97,8 +97,10 @@ OP_NE
 %%
 
 queries:
-    query {
-        Minisql::InstructionQueue::enqueue($1);
+    queries query {
+        Minisql::InstructionQueue::enqueue($2);
+        if (Minisql::isJIT)
+            YYACCEPT;
     }
     | %empty
     ;
