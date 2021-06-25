@@ -134,7 +134,7 @@ namespace Minisql
             tableHead.Clear();
             tableHead.InsertEndChild(tableHead.NewElement("root"));
         }
-        if (!tableHead.FirstChildElement() || !tableData.FirstChildElement()->FirstChildElement())
+        if (!tableHead.FirstChildElement() || !tableHead.FirstChildElement()->FirstChildElement())
             return;
 
         auto node = tableHead.FirstChildElement()->FirstChildElement();
@@ -191,6 +191,14 @@ namespace Minisql
         auto buffer = Buffers.find(tableName);
         delete buffer->second;
         Buffers.erase(buffer);
+
+        if (!tableData.FirstChildElement() || !tableData.FirstChildElement()->FirstChildElement())
+            return;
+        auto node = tableData.FirstChildElement()->FirstChildElement();
+        while (node && node->Name() != tableName)
+            node = node->NextSiblingElement();
+        if (node)
+            tableData.DeleteNode(node);
     }
 
     void HeaderWriter::updateTableNode(const std::string& tableName, int size)
