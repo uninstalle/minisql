@@ -886,7 +886,7 @@ char *yytext;
 #line 1 "./parser/lexer.l"
 #line 2 "./parser/lexer.l"
     #include <iostream>
-    #include "Parser.hh"
+    #include "parser.hh"
     #include "instruction.hh"
     int lineno = 1;
     int colno = 1;

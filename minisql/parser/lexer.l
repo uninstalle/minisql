@@ -1,6 +1,6 @@
 %{
     #include <iostream>
-    #include "Parser.hh"
+    #include "parser.hh"
     #include "instruction.hh"
     int lineno = 1;
     int colno = 1;
