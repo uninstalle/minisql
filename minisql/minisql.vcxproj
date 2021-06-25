@@ -89,10 +89,12 @@
   <ItemGroup>
     <ClCompile Include="catalog\catalog.cc" />
     <ClCompile Include="controller.cc" />
+    <ClCompile Include="fs\buffer.cc" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="parser\instruction.cc" />
     <ClCompile Include="parser\lexer.cc" />
     <ClCompile Include="parser\parser.cc" />
+    <ClCompile Include="third-party\tinyxml\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="catalog\catalog.hh" />
@@ -101,6 +103,7 @@
     <ClInclude Include="fs\fs.hh" />
     <ClInclude Include="parser\instruction.hh" />
     <ClInclude Include="parser\parser.hh" />
+    <ClInclude Include="third-party\tinyxml\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="parser\lexer.l" />

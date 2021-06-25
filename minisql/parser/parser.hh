@@ -47,8 +47,9 @@ extern int yydebug;
 #line 7 "./parser/parser.y"
 
     #include "instruction.hh"
+    extern void flex_flush_buffer();
 
-#line 52 "./parser/parser.hh"
+#line 53 "./parser/parser.hh"
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
@@ -98,7 +99,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 12 "./parser/parser.y"
+#line 13 "./parser/parser.y"
 
     std::string* string_literal;
     int32_t* integer_literal;
@@ -120,7 +121,7 @@ union YYSTYPE
     Minisql::Instruction::Quit* quit_inst;
     Minisql::Instruction::Execfile* execfile_inst;
 
-#line 124 "./parser/parser.hh"
+#line 125 "./parser/parser.hh"
 
 };
 typedef union YYSTYPE YYSTYPE;

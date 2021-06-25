@@ -36,5 +36,7 @@ namespace Minisql
 
         static InstructionHandler createInstructionHandler();
         static void getNextInstruction();
+        static void initialize();
+        static void saveBeforeQuit();
     };
 }

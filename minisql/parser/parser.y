@@ -6,6 +6,7 @@
 
 %code requires {
     #include "instruction.hh"
+    extern void flex_flush_buffer();
 }
 
 
@@ -292,8 +293,8 @@ values:
     ;
 
 delete:
-    KW_DELETE KW_FROM NAME OP_SEMI KW_WHERE conditions OP_SEMI {
-        $$ = new Minisql::Instruction::Delete($3,$6);
+    KW_DELETE KW_FROM NAME KW_WHERE conditions OP_SEMI {
+        $$ = new Minisql::Instruction::Delete($3,$5);
     }
     | KW_DELETE KW_FROM NAME OP_SEMI {
         $$ = new Minisql::Instruction::Delete($3);
@@ -307,7 +308,7 @@ quit:
     ;
 
 execfile:
-    KW_EXECFILE NAME OP_SEMI {
+    KW_EXECFILE CHAR OP_SEMI {
         $$ = new Minisql::Instruction::Execfile($2);
     }
     ;

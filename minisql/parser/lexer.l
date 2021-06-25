@@ -188,7 +188,7 @@ char {
 
 '[^\']{1,255}' {
     colno += yyleng;
-    yylval.string_literal = new std::string(yytext);
+    yylval.string_literal = new std::string(yytext + 1,yytext + yyleng - 1);
     return CHAR;
 }
 
@@ -211,4 +211,9 @@ char {
 int yywrap()
 {
     return 1;
+}
+
+void flex_flush_buffer()
+{
+    yyrestart(yyin);
 }

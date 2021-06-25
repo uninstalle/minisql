@@ -13,6 +13,12 @@
     <Filter Include="src\catalog">
       <UniqueIdentifier>{6756e8eb-d75a-4948-8cd2-609f7148536e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="third-party">
+      <UniqueIdentifier>{5833f96f-b0d1-44ee-811a-8e312a0e903f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third-party\tinyxml">
+      <UniqueIdentifier>{e7861a8b-52d3-43a0-afd4-c07fd9cd3857}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="parser\parser.y">
@@ -41,6 +47,12 @@
     <ClCompile Include="catalog\catalog.cc">
       <Filter>src\catalog</Filter>
     </ClCompile>
+    <ClCompile Include="third-party\tinyxml\tinyxml2.cpp">
+      <Filter>third-party\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\buffer.cc">
+      <Filter>src\fs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parser\instruction.hh">
@@ -60,6 +72,9 @@
     </ClInclude>
     <ClInclude Include="fs\buffer.hh">
       <Filter>src\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="third-party\tinyxml\tinyxml2.h">
+      <Filter>third-party\tinyxml</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

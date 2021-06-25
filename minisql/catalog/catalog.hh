@@ -1,13 +1,13 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "../parser/instruction.hh"
 
 namespace Minisql
 {
+    class HeaderWriter;
+
     class TableAttribute
     {
-        uint32_t constraint = 0;
     public:
         enum class AttrType
         {
@@ -17,7 +17,9 @@ namespace Minisql
         };
         std::string name;
         AttrType type;
-        int typeExInfo;
+        unsigned typeExInfo = 0;
+        unsigned outputWidth;
+        uint32_t constraint = 0;
         unsigned getSizeOf() const
         {
             switch (type)
@@ -52,16 +54,70 @@ namespace Minisql
         std::string value;
     };
 
+    class TableItemIterator
+    {
+        union VarPtr
+        {
+            int32_t* Integer;
+            float* Float;
+            char* Char;
+        };
+        std::vector<TableAttribute::AttrType> varType;
+        std::vector<unsigned> varPtrOffset;
+        char* base = nullptr;
+    public:
+        TableItemIterator(const std::vector<TableAttribute>& head)
+        {
+            varPtrOffset.push_back(0);
+            for (auto& attr : head)
+            {
+                varType.push_back(attr.type);
+                varPtrOffset.push_back(attr.getSizeOf() + varPtrOffset.back());
+            }
+        }
+        VarPtr operator[](unsigned index)
+        {
+            VarPtr ret;
+            switch (varType[index])
+            {
+            case TableAttribute::AttrType::Integer:
+                ret.Integer = reinterpret_cast<int32_t*>(base + varPtrOffset[index]);
+                break;
+            case TableAttribute::AttrType::Float:
+                ret.Float = reinterpret_cast<float*>(base + varPtrOffset[index]);
+                break;
+            case TableAttribute::AttrType::Char:
+                ret.Char = base + varPtrOffset[index];
+                break;
+            }
+            return ret;
+        }
+        void setBaseAddr(char* base) { this->base = base; }
+        void next(unsigned n = 1) { base += n * varPtrOffset.back(); }
+        char* raw() { return base; }
+    };
+
     class Table
     {
+        friend HeaderWriter;
         std::string name;
         std::vector<TableAttribute> head;
         unsigned rowSize;
         unsigned size;
+        TableItemIterator itemIterator;
+
+        void outputHead();
+        void outputItem(TableItemIterator& iter);
 
     public:
         Table(std::string tableName, std::vector<TableAttribute>& tableHead)
-            :name(std::move(tableName)), head(std::move(tableHead)), rowSize(0), size(0)
+            :name(std::move(tableName)), head(std::move(tableHead)), rowSize(0), size(0), itemIterator(head)
+        {
+            for (auto& attr : head)
+                rowSize += attr.getSizeOf();
+        }
+        Table(std::string tableName, std::vector<TableAttribute>& tableHead, unsigned size)
+            :name(std::move(tableName)), head(std::move(tableHead)), rowSize(0), size(size), itemIterator(head)
         {
             for (auto& attr : head)
                 rowSize += attr.getSizeOf();
@@ -70,17 +126,20 @@ namespace Minisql
         {
             return head.at(index);
         }
-        void insertItem(std::vector<std::string> values);
-        void deleteItem(std::vector<Condition> conditions);
-        void selectItem(std::vector<Condition> conditions, std::ostream& os);
+        const std::string& getName() const { return name; }
+        unsigned getRowSize()const { return rowSize; }
+        bool insertItem(const std::vector<std::string>& values);
+        bool deleteItem(const std::vector<Condition>& conditions);
+        bool selectItem(const std::vector<Condition>& conditions, std::ostream& os);
     };
 
     class Catalog
     {
-        std::vector<Table> tables;
+        friend HeaderWriter;
+        static std::vector<Table> tables;
     public:
-        static void createTable(Table t);
-        static void dropTable(std::string name);
-        static Table& getTable(std::string name);
+        static bool createTable(const Table& t);
+        static bool dropTable(const std::string& name);
+        static Table* getTable(const std::string& name);
     };
 }
